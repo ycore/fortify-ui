@@ -31,6 +31,20 @@
                 </button>
             </div>
 
+            <div class="flex items-center justify-between">
+                @if (Route::has('password.request'))
+                <a href="{{ route('password.request') }}"
+                    class="text-blue-600 transition duration-150 ease-in-out hover:text-blue-400 focus:outline-none focus:underline">
+                    {{ __('Forgot your password?') }}
+                </a>
+                @endif
+                @if (Route::has('register'))
+                <a href="{{ route('register') }}"
+                    class="text-blue-600 transition duration-150 ease-in-out hover:text-blue-400 focus:outline-none focus:underline">
+                    {{ __('Not registered?') }}
+                </a>
+                @endif
+            </div>
 
         </form>
     </div>
