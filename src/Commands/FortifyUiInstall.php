@@ -38,18 +38,47 @@ class FortifyUiInstall extends Command
 
     protected function setStubs()
     {
+        if ($offset = mb_strrpos($this->argument('views'), ':')) {
+            $package = implode('/', array_slice(explode(':', $this->argument('views')), 0, 2));
+            $stub = substr($this->argument('views'), $offset + 1);
+
+            return file_exists($this->stubs = base_path('vendor/' . $package) . '/stubs/' . $stub);
+        }
+
+        return file_exists($this->stubs = __DIR__ . '/../../stubs/' . $this->argument('views'));
     }
 
     protected function clobberViews()
     {
+        return ! file_exists(base_path('resources/views/auth')) || in_array(['force'], $this->options());
     }
 
     protected function publishViewStubs()
     {
+        if (! File::copyDirectory($this->stubs, resource_path('views'))) {
+            $this->error('! Error publishing views for ' . $this->argument('views'));
+            return;
+        }
+
+        $this->info(sprintf('- Published %s views to %s/auth',
+            $this->argument('views'),
+            str_replace(base_path(), '.', resource_path('views'))
+        ));
     }
 
     protected function addHomeRoute()
     {
+        if (! Route::has('home')) {
+            $home = trim(RouteServiceProvider::HOME, '/');
 
+            file_put_contents(base_path('routes/web.php'),
+                "Route::middleware(['auth', 'verified'])->group(function () {
+                    Route::view('{$home}', 'home')->name('home');
+                });", FILE_APPEND
+            );
+
+            $this->info('- Appended `home` route to web.php');
+
+        }
     }
 }
