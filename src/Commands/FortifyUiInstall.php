@@ -32,6 +32,7 @@ class FortifyUiInstall extends Command
         $this->comment('Installing FortifyUi views...');
         $this->publishViewStubs();
         $this->addHomeRoute();
+        $this->call('fortify-ui:publish', ['--show-only']);
 
         $this->comment('Installed FortifyUi views successfully.');
     }
