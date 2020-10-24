@@ -1,5 +1,5 @@
 <p  align="center">
-    <img  src="https://github.com/ycore/fortify-ui/raw/master/resources/svg/fortify-ui.svg" width="400">
+    <img  src="https://github.com/ycore/ycore/blob/gh-pages/resources/svg/fortify-ui.svg" width="400">
 </p>
 
 # **FortifyUi**: _[Laravel Fortify][link-fortify]_-powered authentication UI
