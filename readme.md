@@ -1,8 +1,8 @@
+# **FortifyUi**: _[Laravel Fortify][link-fortify]_-powered authentication UI
+
 <p  align="center">
     <img  src="https://github.com/ycore/ycore/blob/gh-pages/resources/svg/fortify-ui.svg" width="400">
 </p>
-
-# **FortifyUi**: _[Laravel Fortify][link-fortify]_-powered authentication UI
 
 ## Introduction
 
@@ -151,7 +151,7 @@ confirm | Enables Features::registration('confirmPassword' => true)
 ``` bash
 $ php artisan fortify-ui:install --help
 ```
-See the _[notes section](a-note-on-enabling-two-factor-authentication)_ for updating the user Model when Two factor authentication is enabled.
+See the _[notes section](#a-note-on-enabling-two-factor-authentication)_ for updating the user Model when Two factor authentication is enabled.
 
 ## Installing other authentication UI views and scaffolding
 It is possible to install your own or community-contributed authentication UI views and scaffolding using the [**FortifyUi**][link-fortify-ui] installer. When installing UI scaffolding from a different package, it can be added as a --dev dependency.
@@ -165,7 +165,7 @@ $ composer require-dev ycore/fortify-ui-unstyled
 $ php artisan fortify-ui:install ycore:fortify-ui-unstyled:unstyled
 ```
 
-See the _[notes section](creating-the-fortify-ui-unstyled-views)_ for details on how the un-styled views were made.
+See the _[notes section](#creating-the-fortify-ui-unstyled-views)_ for details on how the un-styled views were made.
 
 #### Installing your own or community-provided UI scaffolding:
 
@@ -213,7 +213,7 @@ To see the publish options, use the `php artisan fortify:publish --help` command
 ```bash
 $ php artisan fortify:publish --config
 ```
-Overwrites the `config/fortify.php` published during installation with the default configuration provided by _[Laravel Fortify][link-fortify]_. See [Enabling Features](enabling-features) or the _[Laravel Fortify documentation](https://github.com/laravel/fortify#official-documentation)_ for additional configuration options.
+Overwrites the `config/fortify.php` published during installation with the default configuration provided by _[Laravel Fortify][link-fortify]_. See [Enabling Features](#enabling-features) or the _[Laravel Fortify documentation](https://github.com/laravel/fortify#official-documentation)_ for additional configuration options.
 
 ### Two factor authentication
 The _[Laravel Fortify][link-fortify]_ Two Factor Authentication feature requires additional fields in the database and the inclusion of a trait in the User Model.
