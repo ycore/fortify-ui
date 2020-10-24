@@ -3,6 +3,7 @@
 namespace Ycore\FortifyUi\Commands;
 
 use Illuminate\Console\Command;
+use Illuminate\Support\Str;
 
 class FortifyUiPublish extends Command
 {
@@ -30,7 +31,10 @@ class FortifyUiPublish extends Command
 
         $this->publishAssets('Laravel\Fortify\FortifyServiceProvider', ['config', 'migrations']);
         $this->publishAssets('Ycore\FortifyUi\FortifyUiServiceProvider', ['ui-config', 'provider']);
-        $this->showFortifyFeatures();
+
+        if (! $this->option('show-only')) {
+            $this->showFortifyFeatures();
+        }
 
         $this->comment('Published successfully.');
     }
@@ -47,9 +51,15 @@ class FortifyUiPublish extends Command
 
         if ($this->option('all') || isset($arguments)) {
             $arguments['--provider'] = $provider;
+            $arguments['--force'] = true;
             $this->call('vendor:publish', $arguments);
             $this->info('- Published options for ' . $provider);
         }
+
+        if (in_array(['all', 'provider'], $this->options())) {
+            $this->updateProvider();
+        }
+
     }
 
     protected function showFortifyFeatures()
@@ -66,9 +76,22 @@ class FortifyUiPublish extends Command
             || $this->option('migrations') || $this->option('all')) {
             $this->comment('To publish and load new migrations run:');
             $this->info('  `php artisan fortify:publish -migrations` and');
-            $this->info('  `php artisan migrate`');
+            $this->info('  `php artisan migrate` and');
+            $this->info('   add the `TwoFactorAuthenticatable` trait to the User model');
         }
+    }
 
+    public function updateProvider()
+    {
+        $config = file_get_contents(config_path('app.php'));
+
+        if (! Str::contains($config, 'App\Providers\FortifyUiServiceProvider::class')) {
+            file_put_contents(config_path('app.php'), str_replace(
+                'App\Providers\RouteServiceProvider::class,',
+                'App\Providers\RouteServiceProvider::class,' . PHP_EOL . '        App\Providers\FortifyUiServiceProvider::class,',
+                $config
+            ));
+        }
     }
 
 }

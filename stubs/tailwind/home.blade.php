@@ -29,7 +29,7 @@
             <div class="space-y-4">
                 @if (Laravel\Fortify\Features::enabled(Laravel\Fortify\Features::updateProfileInformation()))
                     <div>
-                        @include ($views['update-profile-information'])
+                        @include($views['update-profile-information'])
                     </div>
                 @endif
 
@@ -65,7 +65,7 @@
                 </div>
                 @endif
                 @if (Laravel\Fortify\Features::enabled(Laravel\Fortify\Features::twoFactorAuthentication()))
-                    @if(auth()->user()->two_factor_recovery_codes)
+                    @if (auth()->user()->two_factor_recovery_codes)
                     <div>
                         <a href="{{ url('/user/two-factor-qr-code') }}"
                             class="text-blue-600 transition duration-150 ease-in-out hover:text-blue-400 focus:outline-none focus:underline">
