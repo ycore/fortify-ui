@@ -1,18 +1,17 @@
 <?php
 
-namespace Ycore\FortifyUi;
+namespace Ycore\FortifyUI;
 
 use Illuminate\Support\ServiceProvider;
 use Laravel\Fortify\Features;
 use Laravel\Fortify\Fortify;
-use Ycore\FortifyUi\Actions\CreateNewUser;
-use Ycore\FortifyUi\Actions\ResetUserPassword;
-use Ycore\FortifyUi\Actions\UpdateUserPassword;
-use Ycore\FortifyUi\Actions\UpdateUserProfileInformation;
-use Ycore\FortifyUi\Commands\FortifyUiInstall;
-use Ycore\FortifyUi\Commands\FortifyUiPublish;
+use Ycore\FortifyUI\Actions\CreateNewUser;
+use Ycore\FortifyUI\Actions\ResetUserPassword;
+use Ycore\FortifyUI\Actions\UpdateUserPassword;
+use Ycore\FortifyUI\Actions\UpdateUserProfileInformation;
+use Ycore\FortifyUI\Commands\FortifyUIPublish;
 
-class FortifyUiServiceProvider extends ServiceProvider
+class FortifyUIServiceProvider extends ServiceProvider
 {
     /**
      * Perform post-registration booting of services.
@@ -108,13 +107,12 @@ class FortifyUiServiceProvider extends ServiceProvider
             ], 'fortify-ui-config');
 
             $this->publishes([
-                __DIR__ . '/../stubs/FortifyUiServiceProvider.php' => app_path('Providers/FortifyUiServiceProvider.php'),
+                __DIR__ . '/../stubs/FortifyUIServiceProvider.php' => app_path('Providers/FortifyUIServiceProvider.php'),
             ], 'fortify-provider');
         }
 
         $this->commands([
-            FortifyUiInstall::class,
-            FortifyUiPublish::class,
+            FortifyUIPublish::class,
         ]);
     }
 }

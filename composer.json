@@ -9,7 +9,7 @@
         }
     ],
     "homepage": "https://github.com/ycore/fortify-ui",
-    "keywords": ["Laravel", "Fortify", "laravel-fortify", "laravel-ui", "FortifyUi", "fortify-ui"],
+    "keywords": ["Laravel", "Fortify", "laravel-fortify", "laravel-ui", "FortifyUI", "fortify-ui"],
     "require": {
         "laravel/fortify": "^1.6"
     },
@@ -19,18 +19,18 @@
     },
     "autoload": {
         "psr-4": {
-            "Ycore\\FortifyUi\\": "src"
+            "Ycore\\FortifyUITailwind\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Ycore\\FortifyUi\\Tests\\": "tests"
+            "Ycore\\FortifyUITailwind\\Tests\\": "tests"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "Ycore\\FortifyUi\\FortifyUiServiceProvider"
+                "Ycore\\FortifyUITailwind\\FortifyUIServiceProvider"
             ]
         }
     }
