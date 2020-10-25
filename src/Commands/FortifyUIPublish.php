@@ -1,28 +1,27 @@
 <?php
 
-namespace Ycore\FortifyUi\Commands;
+namespace Ycore\FortifyUI\Commands;
 
 use Illuminate\Console\Command;
-use Illuminate\Support\Str;
 
-class FortifyUiPublish extends Command
+class FortifyUIPublish extends Command
 {
     protected $signature = 'fortify-ui:publish
-        {--show-only : Only shows the currently-enabled Laravel Fortify features}
+        {--show-enabled : Shows the currently-enabled Laravel Fortify features}
         {--config : Publishes the Laravel Fortify config file - `config/fortify.php`}
         {--migrations : Publishes the Laravel Fortify migrations for two-factor auth}
-        {--ui-config : Publishes the FortifyUi config file - `config/fortify-ui.php`}
-        {--provider : Publishes the FortifyUi service provider}
+        {--ui-config : Publishes the FortifyUI config file - `config/fortify-ui.php`}
+        {--provider : Publishes the FortifyUI service provider}
         {--all : The kitchen sink; publishes all Laravel Fortify config, migrations, providers and actions}
         ';
 
-    protected $description = 'Publishes Laravel Fortify and FortifyUi configurations';
+    protected $description = 'Publishes Laravel Fortify and FortifyUI configurations';
 
     protected $stubs;
 
     public function handle()
     {
-        if ($this->option('show-only')) {
+        if ($this->option('show-enabled')) {
             $this->showFortifyFeatures();
             return;
         }
@@ -30,15 +29,20 @@ class FortifyUiPublish extends Command
         $this->comment('Publishing configuration options ...');
 
         $this->publishAssets('Laravel\Fortify\FortifyServiceProvider', ['config', 'migrations']);
-        $this->publishAssets('Ycore\FortifyUi\FortifyUiServiceProvider', ['ui-config', 'provider']);
+        $this->publishAssets('Ycore\FortifyUI\FortifyUIServiceProvider', ['ui-config', 'provider']);
 
-        if (! $this->option('show-only')) {
-            $this->showFortifyFeatures();
-        }
+        $this->showFortifyFeatures();
 
         $this->comment('Published successfully.');
     }
 
+    /**
+     * Publishes the nominated assets
+     *
+     * @param string $provider
+     * @param string $tags
+     * @return void
+     */
     protected function publishAssets($provider, $tags)
     {
         if (! $this->option('all')) {
@@ -57,11 +61,16 @@ class FortifyUiPublish extends Command
         }
 
         if ($this->option('all') || $this->option('provider')) {
-            $this->updateProvider();
+            $this->insertProvider();
         }
 
     }
 
+    /**
+     * Shows the fortify enabled features
+     *
+     * @return void
+     */
     protected function showFortifyFeatures()
     {
         $this->comment('The following features are enabled in config/fortify.php:');
@@ -78,19 +87,6 @@ class FortifyUiPublish extends Command
             $this->info('  `php artisan fortify:publish -migrations` and');
             $this->info('  `php artisan migrate` and');
             $this->info('   add the `TwoFactorAuthenticatable` trait to the User model');
-        }
-    }
-
-    public function updateProvider()
-    {
-        $config = file_get_contents(config_path('app.php'));
-
-        if (! Str::contains($config, 'App\Providers\FortifyUiServiceProvider::class')) {
-            file_put_contents(config_path('app.php'), str_replace(
-                'App\Providers\RouteServiceProvider::class,',
-                'App\Providers\RouteServiceProvider::class,' . PHP_EOL . '        App\Providers\FortifyUiServiceProvider::class,',
-                $config
-            ));
         }
     }
 
