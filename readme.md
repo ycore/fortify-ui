@@ -5,6 +5,10 @@
 
 [**FortifyUI**][link-fortify-ui] builds on the recommendations outlined in the _[Laravel Fortify documentation](https://github.com/laravel/fortify#official-documentation)_. It provides a simple and comprehensive authentication scaffold. It can also ease the upgrade path for existing projects wishing to move from _[Laravel UI](https://github.com/laravel/ui)_ to the _[Laravel Fortify][link-fortify]_ authentication provider.
 
+<div align="center">
+    <img src="https://github.com/ycore/fortify-ui/blob/master/stubs/svg/fortify-ui.svg" width="400">
+</div>
+
 ## Requirements
 [**FortifyUI**][link-fortify-ui] requires Laravel 8.0+. See _[Upgrading Laravel](https://laravel.com/docs/master/upgrade)_ if necesarry
 
@@ -16,16 +20,12 @@
 
 The authentication views and scaffolding are implemented using **FortifyUI**-designed or community-contributed packages. Installing an authentication views package, also installs [**FortifyUI**][link-fortify-ui].
 
-- <img  src="https://github.com/ycore/fortify-ui/blob/stubs/svg/fortify-login.svg" width="50"> Follow the __Fortify-tailwind__ [installation instructions][link-fortify-tailwind] to install a _[Tailwind CSS](tailwindcss.com)_-styled authentication UI
-- <img  src="https://github.com/ycore/fortify-ui/blob/stubs/svg/fortify-login.svg" width="50"> Follow the __Fortify-unstyled__ [installation instructions][link-fortify-unstyled] to install a completely _un-styled_ authentication UI
+- <img  src="https://github.com/ycore/fortify-ui/blob/master/stubs/svg/fortify-login.svg" width="50"> Follow the __Fortify-tailwind__ [installation instructions][link-fortify-tailwind] to install a _[Tailwind CSS](tailwindcss.com)_-styled authentication UI
+- <img  src="https://github.com/ycore/fortify-ui/blob/master/stubs/svg/fortify-login.svg" width="50"> Follow the __Fortify-unstyled__ [installation instructions][link-fortify-unstyled] to install a completely _un-styled_ authentication UI
 
 You can also design your own authentication UI for your frontend library or framework of choice. The [Fortify-unstyled][link-fortify-unstyled] package would be an ideal starter to fork.
 
 _If you design an authentication front-end for [**FortifyUI**][link-fortify-ui] that the community could benefit from, please let us know, and we'd be happy to include reference to it here._
-
-<div align="center">
-    <img  src="https://github.com/ycore/fortify-ui/blob/stubs/svg/fortify-ui.svg" width="400">
-</div>
 
 ## Post-install configuration options
 
