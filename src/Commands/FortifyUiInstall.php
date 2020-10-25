@@ -107,10 +107,11 @@ class FortifyUiInstall extends Command
     protected function updateEnabledConfig($enabled)
     {
         $features = explode(',', $enabled);
-        $this->call('fortify-ui:publish', ['--config' => true]);
+        $this->callSilent('fortify-ui:publish', ['--config' => true]);
 
         $this->updateConfigFile(config_path('fortify.php'), 'features', $this->enabledMap($features));
         $this->reloadConfig();
+        $this->call('fortify-ui:publish', ['--show-only' => true]);
     }
 
     protected function enabledMap($features)
