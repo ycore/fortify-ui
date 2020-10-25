@@ -84,7 +84,7 @@ class FortifyUiInstall extends Command
 
     protected function clobberInstall()
     {
-        return (in_array(['force'], $this->options()) ||
+        return ($this->option('force') ||
             ! (file_exists(base_path('resources/views/auth')) &&
                 file_exists(config_path('fortify.php')) &&
                 file_exists(config_path('fortify-ui.php')))
