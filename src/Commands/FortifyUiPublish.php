@@ -56,7 +56,7 @@ class FortifyUiPublish extends Command
             $this->info('- Published options for ' . $provider);
         }
 
-        if (in_array(['all', 'provider'], $this->options())) {
+        if ($this->option('all') || $this->option('provider')) {
             $this->updateProvider();
         }
 
