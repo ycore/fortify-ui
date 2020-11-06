@@ -17,13 +17,12 @@ class ConfigurationParser
         'reset' => '//Features::resetPasswords()',
         'verify' => '//Features::emailVerification()',
         'profile' => '//Features::updateProfileInformation()',
-        'two-factor' => '//Features::twoFactorAuthentication()',
-        'confirm' => "//Features::twoFactorAuthentication([\n            //'confirmPassword' => true,\n        //])",
+        'two-factor' => "//Features::twoFactorAuthentication([\n            //'confirmPassword' => true,\n        //])",
         'update' => '//Features::updatePasswords()',
     ];
 
     protected $enabled = [
-        'all' => ['register', 'reset', 'verify', 'profile', 'update', 'confirm'],
+        'all' => ['register', 'reset', 'verify', 'profile', 'update'],
         'none' => [],
     ];
 
@@ -99,16 +98,11 @@ class ConfigurationParser
     /**
      * Uncomments all enabled Features
      *
-     * @param string $features
+     * @param array $features
      * @return string
      */
     protected function parseEnabledFeatures($features)
     {
-        if (in_array('confirm', $features)) {
-            $features = array_diff($features, ['two-factor']);
-            unset($this->features['two-factor']);
-        }
-
         $enabled = collect($this->features)->transform(function ($value, $key) use ($features) {
             if (in_array($key, $features)) {
                 return str_replace('//', '', $value);
