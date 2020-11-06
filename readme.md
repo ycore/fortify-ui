@@ -5,7 +5,9 @@
 
 [**FortifyUI**][link-fortify-ui] builds on the recommendations outlined in the _[Laravel Fortify documentation](https://github.com/laravel/fortify#official-documentation)_. It provides a simple and comprehensive authentication scaffold. It can also ease the upgrade path for existing projects wishing to move from _[Laravel UI](https://github.com/laravel/ui)_ to the _[Laravel Fortify][link-fortify]_ authentication provider.
 
-<img src="https://github.com/ycore/fortify-ui/blob/master/stubs/svg/fortify-ui.svg" style="display:block; margin-left: auto; margin-right: auto; width: 50%;" />
+<div align="center">
+    <img src="https://github.com/ycore/fortify-ui/blob/master/stubs/svg/fortify-ui.svg" width="50%" >
+</div>
 
 ## Requirements
 [**FortifyUI**][link-fortify-ui] requires Laravel 8.0+. See _[Upgrading Laravel](https://laravel.com/docs/master/upgrade)_ if necesarry
