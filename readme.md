@@ -5,9 +5,7 @@
 
 [**FortifyUI**][link-fortify-ui] builds on the recommendations outlined in the _[Laravel Fortify documentation](https://github.com/laravel/fortify#official-documentation)_. It provides a simple and comprehensive authentication scaffold. It can also ease the upgrade path for existing projects wishing to move from _[Laravel UI](https://github.com/laravel/ui)_ to the _[Laravel Fortify][link-fortify]_ authentication provider.
 
-<div align="center">
-    <img src="https://github.com/ycore/fortify-ui/blob/master/stubs/svg/fortify-ui.svg" width="400">
-</div>
+<img src="https://github.com/ycore/fortify-ui/blob/master/stubs/svg/fortify-ui.svg" style="display:block; margin-left: auto; margin-right: auto; width: 50%;" />
 
 ## Requirements
 [**FortifyUI**][link-fortify-ui] requires Laravel 8.0+. See _[Upgrading Laravel](https://laravel.com/docs/master/upgrade)_ if necesarry
@@ -20,8 +18,10 @@
 
 The authentication views and scaffolding are implemented using **FortifyUI**-designed or community-contributed packages. Installing an authentication views package, also installs [**FortifyUI**][link-fortify-ui].
 
-- <img  src="https://github.com/ycore/fortify-ui/blob/master/stubs/svg/fortify-login.svg" width="50"> Follow the __Fortify-tailwind__ [installation instructions][link-fortify-tailwind] to install a _[Tailwind CSS](tailwindcss.com)_-styled authentication UI
-- <img  src="https://github.com/ycore/fortify-ui/blob/master/stubs/svg/fortify-login.svg" width="50"> Follow the __Fortify-unstyled__ [installation instructions][link-fortify-unstyled] to install a completely _un-styled_ authentication UI
+**FortifyUI** authentication views and scaffolding|
+-------------- |
+<img src="https://github.com/ycore/fortify-ui/blob/master/stubs/svg/fortify-login.svg" width="50"> Follow the [Fortify-tailwind installation instructions][link-fortify-tailwind] to install the _tailwindcss-styled_ authentication UI |
+<img src="https://github.com/ycore/fortify-ui/blob/master/stubs/svg/fortify-login.svg" width="50"> Follow the [Fortify-unstyled installation instructions][link-fortify-unstyled] to install a completely _un-styled_ authentication UI |
 
 You can also design your own authentication UI for your frontend library or framework of choice. The [Fortify-unstyled][link-fortify-unstyled] package would be an ideal starter to fork.
 
@@ -56,23 +56,7 @@ The following features are enabled in `config/fortify.php` using the default ins
         //Features::updatePasswords(),
     ],
 ```
-Features can be enabled or disabled by manually editing the `config/fortify.php` file post-install, or by using the `fortify-ui:publish --enable` option.
-
-This example enables the registration, reset-passwords and email-verification features.
-
-``` bash
-$ php artisan fortify-ui:publish --enable=register,reset,verify
-```
-Install Option | Laravel Fortify Feature
--------------- | -----------------------
-all | Enables all additional Features
-none | Disables all additional Features
-register | Enables Features::registration()
-reset | Enables Features::resetPasswords()
-verify | Enables Features::emailVerification()
-profile | Enables Features::updateProfileInformation()
-two-factor | Enables Features::twoFactorAuthentication()
-confirm | Enables Features::registration('confirmPassword' => true)
+Features can be enabled or disabled editing the `config/fortify.php` file post-install.
 
 See _[Two factor authentication](#a-note-on-enabling-two-factor-authentication)_ for notes on updating the User model when two factor authentication is enabled.
 
@@ -86,7 +70,7 @@ $ php artisan fortify:publish --migrations
 $ php artisan migrate
 ```
 #### Adding the TwoFactorAuthenticatable trait
-Add the `TwoFactorAuthenticatable` trait to `app/Models/User.php`
+Add the `TwoFactorAuthenticatable` trait and hidden fields to `app/Models/User.php`
 
 ```php
 use Laravel\Fortify\TwoFactorAuthenticatable;
@@ -95,12 +79,19 @@ class User extends Authenticatable
 {
     use HasFactory, Notifiable, TwoFactorAuthenticatable;
     ...
+
+    protected $hidden = [
+        'two_factor_recovery_codes',
+        'two_factor_secret',
+    ];
+    ...
 ```
+
 ### Publishing the _[Laravel Fortify][link-fortify]_ configuration
 ```bash
 $ php artisan fortify:publish --config
 ```
-Overwrites the `config/fortify.php` published during installation with the default configuration provided by _[Laravel Fortify][link-fortify]_. See [Enabling Features](#enabling-features) or the _[Laravel Fortify documentation](https://github.com/laravel/fortify#official-documentation)_ for additional configuration options.
+Overwrites the `config/fortify.php` published during installation with the default configuration provided by _[Laravel Fortify][link-fortify]_. See the _[Laravel Fortify documentation](https://github.com/laravel/fortify#official-documentation)_ for additional configuration options.
 
 
 ### Publishing the [**FortifyUI**][link-fortify-ui] configuration
@@ -139,8 +130,6 @@ $ php artisan fortify:publish --all
 ```
 
 Publishes all the configuration and provider options for both [**FortifyUI**][link-fortify-ui] and _[Laravel Fortify][link-fortify]_.
-
-## Notes
 
 ## Questions?
 
