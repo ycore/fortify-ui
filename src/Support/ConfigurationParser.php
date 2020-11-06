@@ -11,7 +11,6 @@ use Illuminate\Support\Str;
 
 class ConfigurationParser
 {
-    protected $configRepository;
 
     protected $features = [
         'register' => '//Features::registration()',
@@ -60,7 +59,6 @@ class ConfigurationParser
         }
 
         $this->updateConfigFile(config_path('fortify.php'), 'features', $this->parseEnabledFeatures($enabled));
-        $this->reloadConfig();
     }
 
     /**
@@ -79,6 +77,23 @@ class ConfigurationParser
                 $config
             ));
         }
+    }
+
+    /**
+     * Determines whether any files published in the $provider for the $tag exists
+     *
+     * @param string $tag
+     * @return void
+     */
+    public function anyConflicts($provider, $tag)
+    {
+        foreach (ServiceProvider::pathsToPublish($provider, $tag) as $from => $to) {
+            if (file_exists($to)) {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     /**
@@ -163,33 +178,6 @@ class ConfigurationParser
         }
 
         return substr($config, 0, $from + 1) . $value . '    ' . substr($config, $to, strlen($config) + strlen($value));
-    }
-
-    /**
-     * Reloads the configuration
-     *
-     * @return void
-     */
-    protected function reloadConfig()
-    {
-        $this->configRepository->set('fortify', require config_path('fortify.php'));
-    }
-
-    /**
-     * Determines whether any files published in the $provider for the $tag exists
-     *
-     * @param string $tag
-     * @return void
-     */
-    protected function anyConflicts($provider, $tag)
-    {
-        foreach (ServiceProvider::pathsToPublish($provider, $tag) as $from => $to) {
-            if (file_exists($to)) {
-                return false;
-            }
-        }
-
-        return true;
     }
 
     /**

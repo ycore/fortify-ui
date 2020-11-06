@@ -19,18 +19,18 @@
     },
     "autoload": {
         "psr-4": {
-            "Ycore\\FortifyUITailwind\\": "src"
+            "Ycore\\FortifyUI\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Ycore\\FortifyUITailwind\\Tests\\": "tests"
+            "Ycore\\FortifyUI\\Tests\\": "tests"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "Ycore\\FortifyUITailwind\\FortifyUIServiceProvider"
+                "Ycore\\FortifyUI\\FortifyUIServiceProvider"
             ]
         }
     }

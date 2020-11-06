@@ -3,9 +3,12 @@
 namespace Ycore\FortifyUI\Commands;
 
 use Illuminate\Console\Command;
+use Illuminate\Contracts\Config\Repository;
 
 class FortifyUIPublish extends Command
 {
+    protected $config;
+
     protected $signature = 'fortify-ui:publish
         {--show-enabled : Shows the currently-enabled Laravel Fortify features}
         {--config : Publishes the Laravel Fortify config file - `config/fortify.php`}
@@ -18,6 +21,13 @@ class FortifyUIPublish extends Command
     protected $description = 'Publishes Laravel Fortify and FortifyUI configurations';
 
     protected $stubs;
+
+    public function __construct(Repository $config)
+    {
+        $this->config = $config;
+
+        parent::__construct();
+    }
 
     public function handle()
     {
@@ -73,6 +83,8 @@ class FortifyUIPublish extends Command
      */
     protected function showFortifyFeatures()
     {
+        $this->config->set('fortify', require config_path('fortify.php'));
+
         $this->comment('The following features are enabled in config/fortify.php:');
 
         $features = collect(config('fortify.features'))->map(function ($feature) {
