@@ -88,11 +88,11 @@ class ConfigurationParser
     {
         foreach (ServiceProvider::pathsToPublish($provider, $tag) as $from => $to) {
             if (file_exists($to)) {
-                return false;
+                return true;
             }
         }
 
-        return true;
+        return false;
     }
 
     /**
