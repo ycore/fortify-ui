@@ -17,7 +17,7 @@
     </include>
   </coverage>
   <testsuites>
-    <testsuite name="FortifyUi">
+    <testsuite name="FortifyUI">
       <directory suffix=".php">./tests/</directory>
     </testsuite>
   </testsuites>

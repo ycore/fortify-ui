@@ -1,6 +1,6 @@
 <?php
 
-namespace Ycore\FortifyUi\Actions;
+namespace Ycore\FortifyUI\Actions;
 
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;

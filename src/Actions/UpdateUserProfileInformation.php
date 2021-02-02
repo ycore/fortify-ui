@@ -1,6 +1,6 @@
 <?php
 
-namespace Ycore\FortifyUi\Actions;
+namespace Ycore\FortifyUI\Actions;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Support\Facades\Validator;
