@@ -16,7 +16,7 @@ It provides a simple and comprehensive authentication scaffold. It can also ease
 
 ## Installation
 
-[**FortifyUI**][link-fortify-ui] provides a headless implementation of the Laravel Fortify authentication backend, following the recommendations outlined in the _[Laravel Fortify documentation](https://github.com/laravel/fortify#official-documentation)_.
+[**FortifyUI**][link-fortify-ui] provides a headless implementation of the Laravel Fortify authentication backend, following the recommendations outlined in the _[Laravel Fortify documentation](https://laravel.com/docs/fortify)_.
 
 Authentication views and scaffolding are implemented using **FortifyUI**-designed or community-contributed frontend packages. [**FortifyUI**][link-fortify-ui] doesn't need to be installed seperately. Installing an authentication frontend package, also installs [**FortifyUI**][link-fortify-ui].
 
@@ -58,7 +58,7 @@ The following features are enabled in `config/fortify.php` using the default ins
         //Features::updatePasswords(),
     ],
 ```
-Features can be enabled or disabled editing the `config/fortify.php` file post-install. See _[Fortify Features](https://github.com/laravel/fortify#fortify-features)_ for additional configuration options.
+Features can be enabled or disabled editing the `config/fortify.php` file post-install. See _[Fortify Features](https://laravel.com/docs/fortify#fortify-features)_ for additional configuration options.
 
 See _[Two factor authentication](#a-note-on-enabling-two-factor-authentication)_ on the additional requirements when two factor authentication is enabled.
 
@@ -93,7 +93,7 @@ class User extends Authenticatable
 ```bash
 $ php artisan fortify:publish --config
 ```
-Overwrites the `config/fortify.php` published during the intial installation with the default configuration provided by _[Laravel Fortify][link-fortify]_. See the _[Laravel Fortify documentation](https://github.com/laravel/fortify#official-documentation)_ for additional configuration options.
+Overwrites the `config/fortify.php` published during the intial installation with the default configuration provided by _[Laravel Fortify][link-fortify]_. See the _[Laravel Fortify documentation](https://laravel.com/docs/fortify)_ for additional configuration options.
 
 ### Publishing the [**FortifyUI**][link-fortify-ui] configuration
 Publishing `config/fortify-ui.php` allows customising the view locations.
@@ -198,13 +198,13 @@ Publishes all the configuration and provider options for both [**FortifyUI**][li
 ## Questions?
 
 ### Is this a replacement for Laravel Jetstream?
-While both [**FortifyUI**][link-fortify-ui] and Laravel Jetstream utilizes _[Laravel Fortify][link-fortify]_, Jetstream provides both substantial additional functionality and additional scaffolding options, including _Laravel Livewire_ and _Intertia_, which [**FortifyUI**][link-fortify-ui] does not aim to replicate or replace. [**FortifyUI**][link-fortify-ui] does however follow the basic recommendations from the _[Laravel Fortify documentation](https://github.com/laravel/fortify#official-documentation)_ for implementing an authentication UI scaffold without much of the additional scaffolding.
+While both [**FortifyUI**][link-fortify-ui] and Laravel Jetstream utilizes _[Laravel Fortify][link-fortify]_, Jetstream provides both substantial additional functionality and additional scaffolding options, including _Laravel Livewire_ and _Intertia_, which [**FortifyUI**][link-fortify-ui] does not aim to replicate or replace. [**FortifyUI**][link-fortify-ui] does however follow the basic recommendations from the _[Laravel Fortify documentation](https://laravel.com/docs/fortify)_ for implementing an authentication UI scaffold without much of the additional scaffolding.
 ### Can it be used to replace Laravel UI?
 _[Laravel UI](https://github.com/laravel/ui)_ has been the de-facto simple Laravel authentication UI scaffold for many development projects, but doesn't include many of the _[Laravel Fortify][link-fortify]_ features. _[Laravel UI](https://github.com/laravel/ui)_ has been through many iterations and has often been tightly integrated. It would be diffcult to comprehensive predict all upgrade scenarios.
 
 [**FortifyUI**][link-fortify-ui] was however created and have been used to migrate some of our internal and client projects from _[Laravel UI](https://github.com/laravel/ui)_ to a _[Laravel Fortify][link-fortify]_-based authentication implementation. Many of the granular configuration options exist because we needed them for both new installations and while migrating.
 ### What are the other options?
-It is possible to follow the relatively straightforward _[Laravel Fortify documentation](https://github.com/laravel/fortify#official-documentation)_ to implement your own authentication UI scaffold - like we did.
+It is possible to follow the relatively straightforward _[Laravel Fortify documentation](https://laravel.com/docs/fortify)_ to implement your own authentication UI scaffold - like we did.
 
 [Zack Warren](https://github.com/zacksmash/fortify-ui) published a package with largely similar functionality and a somewhat different design. We may possibly have used that ourselves had we discovered it earlier.
 
